@@ -1,0 +1,206 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5kvgrjqyoyx8"]
+
+[ext_resource type="Script" path="res://CyClicker/clicker.gd" id="1_1qc77"]
+[ext_resource type="Texture2D" uid="uid://dxqhm320iwmlq" path="res://texture/Cynull.png" id="3_m5rld"]
+[ext_resource type="AudioStream" uid="uid://cgotlqcviebql" path="res://squak1.ogg" id="3_xmy3f"]
+[ext_resource type="Texture2D" uid="uid://d1jsud16melo1" path="res://volume_1761639.png" id="4_cnlby"]
+
+[sub_resource type="GDScript" id="GDScript_21sli"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="Gradient" id="Gradient_epvw5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Clicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1qc77")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.5
+offset_top = 50.0
+offset_right = 67.5
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+text = "Squeaks : "
+script = SubResource("GDScript_21sli")
+
+[node name="SPS" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 90.0
+offset_right = 20.0
+offset_bottom = 113.0
+grow_horizontal = 2
+text = "squeaks per seccond :"
+
+[node name="Button" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 250)
+texture_normal = ExtResource("3_m5rld")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Button"]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(262, 270)
+emitting = false
+lifetime = 0.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.94
+randomness = 0.35
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+linear_accel_min = -35.71
+linear_accel_max = -11.47
+scale_amount_min = 10.1
+scale_amount_max = 20.2
+color = Color(0.709804, 0.901961, 0.113725, 1)
+color_ramp = SubResource("Gradient_epvw5")
+
+[node name="BBB" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -66.665
+offset_right = 49.0
+offset_bottom = -35.665
+grow_horizontal = 2
+grow_vertical = 0
+text = "Buy Bapper"
+
+[node name="SqueakSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_xmy3f")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -23.0
+offset_right = 150.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HSlider"]
+position = Vector2(-20, 7)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_cnlby")
+
+[node name="SPS Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Shop Box" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop Box"]
+layout_mode = 2
+offset_left = -286.0
+offset_right = 1.0
+offset_bottom = 220.0
+
+[node name="BapperLabel" type="Label" parent="Shop Box/VBoxContainer"]
+layout_mode = 2
+text = "Stats:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop Box/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatBapper" type="Label" parent="Shop Box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bappers 
+"
+
+[node name="StatBapSpd" type="Label" parent="Shop Box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bapper Speed
+"
+
+[node name="StatBapSqk" type="Label" parent="Shop Box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bapper Squeaks
+"
+
+[node name="StatClickSqk" type="Label" parent="Shop Box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clicker Squeaks"
+
+[node name="StatCritCha" type="Label" parent="Shop Box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Critical Chance
+"
+
+[node name="StatUpgrd" type="Label" parent="Shop Box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrade Luck"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BBB" to="." method="_on_bbb_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="timeout" from="SPS Timer" to="." method="_on_sps_timer_timeout"]
